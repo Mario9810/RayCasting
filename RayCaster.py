@@ -174,8 +174,7 @@ screen = pygame.display.set_mode((1000,500), pygame.DOUBLEBUF | pygame.HWACCEL) 
 screen.set_alpha(None)
 clock = pygame.time.Clock()
 font = pygame.font.SysFont("Arial", 30)
-def simple():
-    print("im simple")  
+  
 def updateFPS():
     fps = str(int(clock.get_fps()))
     fps = font.render(fps, 1, pygame.Color("white"))
@@ -198,7 +197,6 @@ def function(isRunning):
             elif ev.key == pygame.K_w:
                 newX += cos(r.player['angle'] * pi / 180) * r.stepSize
                 newY += sin(r.player['angle'] * pi / 180) * r.stepSize
-                print("puta")
             elif ev.key == pygame.K_s:
                 newX -= cos(r.player['angle'] * pi / 180) * r.stepSize
                 newY -= sin(r.player['angle'] * pi / 180) * r.stepSize
