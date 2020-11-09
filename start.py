@@ -58,7 +58,7 @@ def quitgame():
 
 def game_intro(action):
     pygame.mixer.music.load('coffin.wav')
-    #pygame.mixer.music.play(-1)
+    pygame.mixer.music.play(-1)
     
     intro = True
 
@@ -76,7 +76,7 @@ def game_intro(action):
         gameDisplay.blit(TextSurf, TextRect)
 
         button("INICIAR",150,450,100,50,green,bright_green,action)
-        button("SALIR",1050,450,100,50,red,bright_red,quitgame)
+        button("SALIR",750,450,100,50,red,bright_red,quitgame)
 
         pygame.display.update()
         clock.tick(15)

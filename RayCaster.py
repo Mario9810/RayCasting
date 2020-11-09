@@ -20,13 +20,13 @@ enemies = [{"x": 100,
             "y": 200,
             "texture" : pygame.image.load('poke1.png')},
 
-           {"x": 270,
+           {"x": 410,
             "y": 200,
-            "texture" : pygame.image.load('poke1.png')},
+            "texture" : pygame.image.load('poke2.png')},
 
-           {"x": 320,
+           {"x": 340,
             "y": 420,
-            "texture" : pygame.image.load('poke1.png')}    
+            "texture" : pygame.image.load('poke3.png')}    
     ]
 
 
@@ -161,7 +161,7 @@ class Raycaster(object):
                 self.screen.set_at((x, y), texColor)
         for enemy in enemies:
             self.screen.fill(pygame.Color("black"), (enemy['x'], enemy['y'], 3,3))
-            self.drawSprite(enemy, 30)
+            self.drawSprite(enemy, 15)
 
         for i in range(self.height):
             self.screen.set_at( (halfWidth, i), BLACK)
@@ -170,7 +170,7 @@ class Raycaster(object):
 
 
 pygame.init()
-screen = pygame.display.set_mode((1700,500), pygame.DOUBLEBUF | pygame.HWACCEL) #, pygame.FULLSCREEN)
+screen = pygame.display.set_mode((1000,500), pygame.DOUBLEBUF | pygame.HWACCEL) #, pygame.FULLSCREEN)
 screen.set_alpha(None)
 clock = pygame.time.Clock()
 font = pygame.font.SysFont("Arial", 30)
@@ -184,11 +184,11 @@ def updateFPS():
 r = Raycaster(screen)
 r.load_map('map.txt')
 def function(isRunning):
+    mos = pygame.mouse.get_pos()
+    
     for ev in pygame.event.get():
         if ev.type == pygame.QUIT:
             isRunning = False
-        mouse = pygame.mouse.get_pos()
-        click = pygame.mouse.get_pressed()
         newX = r.player['x']
         newY = r.player['y']
 
@@ -198,6 +198,7 @@ def function(isRunning):
             elif ev.key == pygame.K_w:
                 newX += cos(r.player['angle'] * pi / 180) * r.stepSize
                 newY += sin(r.player['angle'] * pi / 180) * r.stepSize
+                print("puta")
             elif ev.key == pygame.K_s:
                 newX -= cos(r.player['angle'] * pi / 180) * r.stepSize
                 newY -= sin(r.player['angle'] * pi / 180) * r.stepSize
@@ -207,20 +208,25 @@ def function(isRunning):
             elif ev.key == pygame.K_d:
                 newX += cos((r.player['angle'] + 90) * pi / 180) * r.stepSize
                 newY += sin((r.player['angle'] + 90) * pi / 180) * r.stepSize
+            
             elif ev.key == pygame.K_q:
                 r.player['angle'] -= 5
-            elif pygame.mouse.get_pressed() 
+            
             elif ev.key == pygame.K_e:
                 r.player['angle'] += 5
-
-
+            
             i = int(newX / r.blocksize)
             j = int(newY / r.blocksize)
-
             if r.map[j][i] == ' ':
                 r.player['x'] = newX
                 r.player['y'] = newY
-
+            
+           
+        if ev.type == pygame.MOUSEBUTTONUP and mos[0]>750: 
+                r.player['angle'] += 5
+        if ev.type == pygame.MOUSEBUTTONUP and (750>mos[0]>500): 
+                r.player['angle'] -= 5
+        
         screen.fill(pygame.Color("gray")) #Fondo
 
         #Techo
