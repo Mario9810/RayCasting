@@ -207,8 +207,9 @@ def function(isRunning):
             elif ev.key == pygame.K_d:
                 newX += cos((r.player['angle'] + 90) * pi / 180) * r.stepSize
                 newY += sin((r.player['angle'] + 90) * pi / 180) * r.stepSize
-            elif ev.key == pygame.K_q or (mouse[0]>500 and click[0] == 1):
+            elif ev.key == pygame.K_q:
                 r.player['angle'] -= 5
+            elif pygame.mouse.get_pressed() 
             elif ev.key == pygame.K_e:
                 r.player['angle'] += 5
 
